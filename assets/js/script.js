@@ -9,6 +9,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+  alert("Welcome to my password generator! Before we can generate a password, please specify your password criteria: ");
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
@@ -106,7 +107,6 @@ function generatePassword(){
 
   //Password starts as empty string and will get popolated in the for loop below 
   var password = ' ';
-  alert("Welcome to my password generator! Before we can generate a password, please specify your password criteria: ");
   var passLength = getUserInputLength();
   var lowerCase = wantLowerCase();
   var upperCase = wantUpperCase();
@@ -117,6 +117,10 @@ function generatePassword(){
   //for loop to generate the password
   var allChars = lowerCase + upperCase + passNumeric + passSpecial;
 
+  if(allChars === ''){
+    window.alert("Please type 'Yes' for at least one password criteria. ");
+    return generatePassword();
+  }
   //This for loop generates a password based on random values from 'allChars' that will be added to  the 'password' variable
   for ( let i = 0; i < passLength; i++ ) {
     password += allChars.charAt(Math.floor(Math.random() * allChars.length));
